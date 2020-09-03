@@ -11,5 +11,5 @@ phases:
       - echo Build completed successfully
 artifacts:
   files:
-    - target/hello-world*/*
+    - target/hello-world.jar
   discard-paths: yes
