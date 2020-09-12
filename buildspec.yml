@@ -4,7 +4,6 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - mvn clean package
       - echo Logging in to Amazon ECR...
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
@@ -26,8 +25,8 @@ phases:
       - echo Writing image definitions file...
       - printf '[{"name":"nodeapp","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
+	  
 artifacts:
   files:
-   - imagedefinitions.json
-   - target/hello-world.jar
-
+    - target/hello-world.jar
+  discard-paths: yes
